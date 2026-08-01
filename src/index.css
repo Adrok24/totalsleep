@@ -1,0 +1,220 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   TotalSleep · Sistema de diseño "Protocolo clínico"
+   ------------------------------------------------------------
+   Tipografía suiza aplicada a un instrumento médico. Una sola
+   familia, filetes de 1px, radio casi cero, cero sombras.
+   La profundidad sale de reglas y tintes planos, no de blur.
+
+   El magenta está racionado: sólo acción y estado actual.
+   El azul carga la estructura. Todo lo demás es tinta y gris.
+   ============================================================ */
+
+@theme {
+  /* --- Marca ---------------------------------------------------------
+     Muestreados del logotipo: magenta del lettering "SLEEP",
+     azul de "Total" y de la cruz. */
+  --color-magenta-700: #a80063;
+  --color-magenta-600: #c4006f;
+  --color-magenta-500: #ec008c; /* base */
+  --color-magenta-200: #ffb3dc;
+  --color-magenta-100: #ffd9ee;
+  --color-magenta-50: #fff0f8;
+
+  --color-cobalt-900: #0e3f66;
+  --color-cobalt-800: #14548a;
+  --color-cobalt-700: #17629e;
+  --color-cobalt-600: #1c75bc; /* base */
+  --color-cobalt-300: #8fc0e6;
+  --color-cobalt-100: #d7e8f6;
+  --color-cobalt-50: #eff6fc;
+
+  /* --- Neutros -------------------------------------------------------
+     Fríos, para no pelear con el magenta. */
+  --color-ink: #0e1620; /* texto principal */
+  --color-graphite: #5a6472; /* texto secundario */
+  --color-silver: #98a1ad; /* texto terciario / deshabilitado */
+  --color-rule: #e0e4e9; /* filete de 1px, el material del sistema */
+  --color-rule-soft: #eef0f3;
+  --color-shell: #f4f5f7; /* fondo de página */
+  --color-paper: #ffffff;
+
+  /* --- Rampa de severidad --------------------------------------------
+     Recorre el arco de la marca: azul (bien) → índigo → magenta (mal),
+     con los dos colores del logo anclados en `guarded` y `high`.
+
+     Los pasos NO se eligieron a ojo: se validaron con el validador de
+     paletas (separación adyacente ΔE en OKLab, simulación de daltonismo
+     y contraste). Resultado: ΔE 21.2 a visión normal y 14.5 en el peor
+     caso de daltonismo — la versión anterior daba 7.7 y 5.0, es decir
+     bandas contiguas prácticamente indistinguibles.
+
+     El celeste queda por debajo de 3:1 contra el papel, lo cual es
+     admisible únicamente porque toda banda viaja siempre acompañada de
+     su etiqueta de texto y los puntajes se presentan en tablas: el color
+     nunca es el único portador del dato. */
+  --color-low: #7fbcea;
+  --color-guarded: #1c75bc; /* azul de marca */
+  --color-elevated: #4a2a78;
+  --color-high: #ec008c; /* magenta de marca */
+  --color-severe: #7a0049;
+
+  --color-low-tint: #eaf4fc;
+  --color-guarded-tint: #e7f1fa;
+  --color-elevated-tint: #eeeaf6;
+  --color-high-tint: #fff0f8;
+  --color-severe-tint: #f9e8f0;
+
+  /* --- Tipografía ----------------------------------------------------
+     Una sola familia en todo el sistema. El contraste sale de
+     escala, peso y tracking. */
+  --font-sans: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Geometría -----------------------------------------------------
+     Rectángulos. El radio es un detalle, no un gesto. */
+  --radius-xs: 1px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+
+  /* --- Movimiento ----------------------------------------------------
+     Sobrio. Un fundido ascendente corto y nada más. */
+  --animate-enter: enter 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-fade: fade 0.35s ease both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Fondo del sitio: la textura va en el lienzo (`html`) y no en `body`,
+     que es la única forma en que `background-attachment: fixed` se ancla
+     al viewport de manera fiable. El color de shell queda de respaldo por
+     si la imagen no carga. */
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-shell);
+    background-image: url('/fondo/fondo.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  body {
+    margin: 0;
+    background: transparent;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.12;
+  }
+
+  /* El foco es un rectángulo magenta: coherente con el resto */
+  :focus-visible {
+    outline: 2px solid var(--color-magenta-500);
+    outline-offset: 2px;
+    border-radius: 0;
+  }
+
+  ::selection {
+    background: var(--color-magenta-500);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-shell);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-rule);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-silver);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================
+   Utilidades del sistema
+   ============================================================ */
+
+/* Numerales tabulares: obligatorio en todo dato clínico */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Etiqueta técnica: versalitas anchas, el conector del sistema */
+@utility label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+@utility label-sm {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* Retícula de filetes: estructura visible, sin textura ni ruido */
+@utility rule-grid {
+  background-image:
+    linear-gradient(to right, var(--color-rule-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-rule-soft) 1px, transparent 1px);
+  background-size: 72px 72px;
+}

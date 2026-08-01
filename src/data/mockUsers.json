@@ -1,0 +1,38 @@
+[
+  {
+    "id": "usr-001",
+    "role": "patient",
+    "firstName": "Lucía",
+    "lastName": "Ferrer",
+    "email": "lucia.ferrer@totalsleep.test",
+    "birthDate": "1991-04-18",
+    "username": "lucia",
+    "password": "paciente123",
+    "createdAt": "2026-01-12T10:00:00.000Z",
+    "results": []
+  },
+  {
+    "id": "usr-002",
+    "role": "patient",
+    "firstName": "Martín",
+    "lastName": "Ocampo",
+    "email": "martin.ocampo@totalsleep.test",
+    "birthDate": "1978-11-02",
+    "username": "martin",
+    "password": "paciente123",
+    "createdAt": "2026-02-03T09:30:00.000Z",
+    "results": []
+  },
+  {
+    "id": "usr-900",
+    "role": "admin",
+    "firstName": "Valeria",
+    "lastName": "Sosa",
+    "email": "valeria.sosa@totalsleep.test",
+    "birthDate": "1985-06-25",
+    "username": "admin",
+    "password": "admin123",
+    "createdAt": "2025-12-01T08:00:00.000Z",
+    "results": []
+  }
+]
