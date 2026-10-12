@@ -23,7 +23,7 @@ export default function App() {
   return (
     <AuthProvider>
       <QuestionnaireProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <Routes>
             {/* Públicas */}
             <Route path="/login" element={<LoginPage />} />
