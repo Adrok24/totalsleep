@@ -1,18 +1,15 @@
 import { cx } from '../../utils/format';
 
 /**
- * Marca TotalSleep — archivo oficial servido desde `public/logo.png`
- * (480×192, relación 2.5:1).
- *
- * Se declaran `width`/`height` para que el navegador reserve el espacio
- * antes de descargar la imagen y no haya salto de layout al cargar.
- * Para cambiar el tamaño en un contexto puntual, pasar una clase de alto
- * por `className` (el ancho se ajusta solo).
+ * Marca TotalSleep — archivo en `public/logo.svg`.
+ * Usa BASE_URL para funcionar también bajo GitHub Pages (/totalsleep/).
  */
 export default function Logo({ className }) {
+  const src = `${import.meta.env.BASE_URL}logo.svg`;
+
   return (
     <img
-      src="/logo.png"
+      src={src}
       alt="TotalSleep"
       width={480}
       height={192}
