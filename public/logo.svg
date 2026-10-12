@@ -1,14 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 192" role="img" aria-label="TotalSleep">
-  <!-- Cruz clínica (azul de marca) -->
   <g fill="#1C75BC">
     <rect x="24" y="56" width="56" height="80" rx="4"/>
     <rect x="12" y="80" width="80" height="32" rx="4"/>
   </g>
-  <!-- Wordmark: Total (cobalt) + SLEEP (magenta) -->
   <text
     x="112"
     y="118"
-    font-family="Schibsted Grotesk, ui-sans-serif, system-ui, sans-serif"
+    font-family="ui-sans-serif, system-ui, sans-serif"
     font-size="72"
     font-weight="800"
     letter-spacing="-2.5"
